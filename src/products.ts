@@ -1,4 +1,6 @@
-const products = [
+import productInterface from "./models/productTypes";
+
+const products: Array<productInterface> = [
   {
     _id: "1",
     name: "Airpods Wireless Bluetooth Headphones",
