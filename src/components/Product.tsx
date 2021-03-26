@@ -1,18 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
-
-interface productInterface {
-  _id: string;
-  name: string;
-  image: string;
-  description: string;
-  brand: string;
-  category: string;
-  price: number;
-  countInStock: number;
-  rating: number;
-  numReviews: number;
-}
+import Rating from "./Rating";
+import productInterface from "../models/productTypes";
 
 type AppProps = {
   product: productInterface;
@@ -32,7 +21,11 @@ const Product = ({ product }: AppProps) => {
         </a>
         <Card.Text as="div">
           <div className="my-3">
-            {product.rating} from {product.numReviews}
+            <Rating
+              value={product.rating}
+              text={`${product.numReviews}  reviews`}
+              color={"#f8e825"}
+            />
           </div>
         </Card.Text>
         <Card.Text as="h3">${product.price}</Card.Text>
