@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Image, ListGroup, Button, Card } from "react-bootstrap";
 import { Rating } from "../components";
-import products from "../products";
 import { RouteComponentProps } from "../models/ReactMostUsed";
-
+import axios from "axios";
+import productInterface from "../models/productTypes";
 interface MatchParams {
   id: string;
 }
 
 const ProductScreen = ({ match }: RouteComponentProps<MatchParams>) => {
-  const product: any = products.find((p) => p._id === match.params.id);
+  const [product, setProduct] = useState<productInterface>();
+
+  const { id } = match.params;
+
+  useEffect(() => {
+    const fetch = async () => {
+      const { data } = await axios.get(`/api/products/${id}`);
+      setProduct(data);
+    };
+    fetch();
+  }, [id]);
 
   return (
     <div>
@@ -47,7 +57,7 @@ const ProductScreen = ({ match }: RouteComponentProps<MatchParams>) => {
                 <Row>
                   <Col>Price:</Col>
                   <Col>
-                    <strong>${product.price}</strong>
+                    <strong>${product?.price}</strong>
                   </Col>
                 </Row>
               </ListGroup.Item>
@@ -55,7 +65,7 @@ const ProductScreen = ({ match }: RouteComponentProps<MatchParams>) => {
                 <Row>
                   <Col>Status:</Col>
                   <Col>
-                    {product.countInStock > 0 ? (
+                    {product !== undefined && product?.countInStock > 0 ? (
                       <strong className="text-success">In Stock</strong>
                     ) : (
                       <strong className="text-danger">Out of Stock</strong>
@@ -67,7 +77,7 @@ const ProductScreen = ({ match }: RouteComponentProps<MatchParams>) => {
                 <Button
                   className="btn-block"
                   type="button"
-                  disabled={product.countInStock === 0}
+                  disabled={product?.countInStock === 0}
                 >
                   Add to Card
                 </Button>
