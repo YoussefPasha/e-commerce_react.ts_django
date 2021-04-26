@@ -24,7 +24,7 @@ const Product = ({ product }: AppProps) => {
           <div className="my-3">
             <Rating
               value={product.rating}
-              text={`${product.numReviews}  reviews`}
+              text={`${product.numReviews} `}
               color={"#f8e825"}
             />
           </div>
