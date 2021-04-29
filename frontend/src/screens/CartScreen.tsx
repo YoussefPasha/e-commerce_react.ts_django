@@ -11,7 +11,7 @@ import {
   Card,
 } from "react-bootstrap";
 import { Message } from "../components";
-import { addToCart } from "../actions/CartActions";
+import { addToCart, removeFromCart } from "../actions/CartActions";
 import { RouteComponentProps } from "../models/ReactMostUsed";
 interface MatchParams {
   id: string;
@@ -34,12 +34,12 @@ const CartScreen = ({
   }, [qty, id, dispatch]);
 
   const removeFromCartHandler = (id: any) => {
-    console.log("remove" + id);
+    dispatch(removeFromCart(id));
   };
 
   const checkoutHandler = () => {
-    history.push('/login?redirect=shipping')
-  }
+    history.push("/login?redirect=shipping");
+  };
 
   return (
     <Row>
