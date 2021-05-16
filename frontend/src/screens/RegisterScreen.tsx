@@ -44,7 +44,7 @@ const RegisterScreen = ({
       {message && <Message variant="danger">{message}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
-        <Form.Group controlId="email">
+        <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>
           <Form.Control
             required
