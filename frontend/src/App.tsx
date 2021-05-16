@@ -1,8 +1,7 @@
-import React from "react";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Footer, Header } from "./components";
-import { HomeScreen, ProductScreen, CartScreen } from "./screens";
+import { HomeScreen, ProductScreen, CartScreen, LoginScreen } from "./screens";
 
 function App() {
   return (
@@ -11,6 +10,7 @@ function App() {
       <main className="py-3">
         <Container>
           <Route component={HomeScreen} path="/" exact />
+          <Route component={LoginScreen} path="/login" />
           <Route component={ProductScreen} path="/product/:id" />
           <Route component={CartScreen} path="/cart/:id?" />
         </Container>

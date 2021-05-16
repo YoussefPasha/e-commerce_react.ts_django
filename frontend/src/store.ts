@@ -23,7 +23,7 @@ const userItemsLocal = userInLocalCart ? JSON.parse(userInLocalCart) : null;
 
 const initialState: any = {
   cart: { cartItems: cartItemsLocal },
-  userLoin: { userInfo: userItemsLocal },
+  userLogin: { userInfo: userItemsLocal },
 };
 
 const middleWare = [Thunk];
